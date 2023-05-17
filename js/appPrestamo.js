@@ -1,8 +1,8 @@
 mostrarPrestamos();
 consultaHistorial();
 
+const mainPrestamo = document.querySelector('#mainPrestamo');
 const consultarEdad = document.querySelector('#consultarEdad');
-const simulador = document.querySelector('#simulador');
 
 consultarEdad.addEventListener('click', async function () {
     fechaN = document.querySelector('#fechaN').value;
@@ -10,6 +10,12 @@ consultarEdad.addEventListener('click', async function () {
     prestamoFiltro18a80 = tiposPrestamos.filter((prestamo) => prestamo.edadMinima == 18 && prestamo.edadMaxima <= 65);
     prestamoFiltro35a80 = tiposPrestamos.filter((prestamo) => prestamo.edadMaxima > 35 && prestamo.edadMaxima <= 65);
     prestamoFiltroMas80 = tiposPrestamos.filter((prestamo) => prestamo.edadMinima == 65);
+
+    const divSimulador = document.createElement('div');
+    divSimulador.id = "simulador";
+    mainPrestamo.appendChild(divSimulador);
+
+    const simulador = document.querySelector('#simulador');
 
     simulador.innerHTML = `
         <p class="" id="mensajePrestamoEdad"></p>
@@ -19,8 +25,6 @@ consultarEdad.addEventListener('click', async function () {
             <select class="col-3 me-3" id="listadoPrestamos"></select>
             <button class="col-2 me-3 btn btn-secondary" type="button" id="seleccionarPrestamo">Elegir</button>
         </div>
-        <p class="" id="prestamoSelecionado"></p>
-        <div class="" id="simuladorDatos"></div>
     `;
 
     mensajePrestamoEdad(fechaN, selectorFiltro(edad(fechaN)));
@@ -28,13 +32,21 @@ consultarEdad.addEventListener('click', async function () {
     listadoPrestamos(selectorFiltro(edad(fechaN)));
 
     const seleccionarPrestamo = document.querySelector('#seleccionarPrestamo');
-    const prestamoSelecionado = document.querySelector('#prestamoSelecionado');
-    const simuladorDatos = document.querySelector('#simuladorDatos');
     const prestamoSelecionadoClass = ['mx-2', 'fw-bold', 'text-danger', 'text-center'];
 
     if (seleccionarPrestamo) {
         seleccionarPrestamo.addEventListener('click', function () {
 
+            const pPrestamoSelecionado = document.createElement('p');
+            pPrestamoSelecionado.id = "prestamoSelecionado";
+            simulador.appendChild(pPrestamoSelecionado);
+
+            const divSimuladorDatos = document.createElement('div');
+            divSimuladorDatos.id = "simuladorDatos";
+            simulador.appendChild(divSimuladorDatos);
+
+            const prestamoSelecionado = document.querySelector('#prestamoSelecionado');
+            const simuladorDatos = document.querySelector('#simuladorDatos');
 
             if (document.querySelector('#listadoPrestamos').value == 0) {
                 prestamoSelecionado.innerHTML = `Seleccione una de las opciones de la lista`;
@@ -65,7 +77,6 @@ consultarEdad.addEventListener('click', async function () {
                     <div class="m-4 d-flex justify-content-center">
                         <button class="col-3 btn btn-success" type="button" id="btnSimular">Calcular</button>
                     </div>
-                    <div class="" id="resultadoSimulador"></div>    
                 `;
 
                 const montoMaximo = document.querySelector('#montoMaximo');
@@ -107,10 +118,14 @@ consultarEdad.addEventListener('click', async function () {
                 });
 
                 const btnSimular = document.querySelector('#btnSimular');
-                const resultadoSimulador = document.querySelector('#resultadoSimulador');
-
 
                 btnSimular.addEventListener('click', function () {
+
+                    const divResultadoSimulador = document.createElement('p');
+                    divResultadoSimulador.id = "resultadoSimulador";
+                    simuladorDatos.appendChild(divResultadoSimulador);
+
+                    const resultadoSimulador = document.querySelector('#resultadoSimulador');
 
                     if ((montoPrestamo.value <= buscarArraysPorNombre(tiposPrestamos, (document.querySelector('#listadoPrestamos').value)).montoMaxino) && (montoPrestamo.value >= buscarArraysPorNombre(tiposPrestamos, (document.querySelector('#listadoPrestamos').value)).montoMinimo) && (cantidadCuotas.value <= buscarArraysPorNombre(tiposPrestamos, (document.querySelector('#listadoPrestamos').value)).cuotasMaximo) && (cantidadCuotas.value >= buscarArraysPorNombre(tiposPrestamos, (document.querySelector('#listadoPrestamos').value)).cuotasMinimo) && (montoPrestamo.value !== 0) && (cantidadCuotas.value !== 0)) {
 
@@ -170,10 +185,27 @@ consultarEdad.addEventListener('click', async function () {
                         const reinicar = document.querySelector('#reinicar');
 
                         guardarSimulacion.addEventListener('click', function () {
-                            crearCopiaSimulacion(nacimientoFecha);
-                            alert('Se guardo una copia de su simulación\nGracias por visitarnos. Esperamos que vuelta pronto!');
-                            simulador.innerHTML = ``;
-                            document.querySelector('#fechaN').value = '';
+
+                            Swal.fire({
+                                title: '¿Confirma que quiere guardar la simulación?',
+                                showDenyButton: true,
+                                showCancelButton: true,
+                                confirmButtonText: 'Guardar',
+                                denyButtonText: `No guardar`,
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    crearCopiaSimulacion(nacimientoFecha);
+                                    Swal.fire('Se guardo una copia de su simulación', 'Gracias por visitarnos. Esperamos que vuelta pronto!', 'success').then(() => {
+                                        simulador.innerHTML = ``;
+                                        document.querySelector('#fechaN').value = '';
+                                    })
+                                } else if (result.isDenied) {
+                                    Swal.fire('No se guardo su simulación', '', 'info').then(() => {
+                                        simulador.innerHTML = ``;
+                                        document.querySelector('#fechaN').value = '';
+                                    })
+                                }
+                            })
                         });
 
                         reinicar.addEventListener('click', function () {
