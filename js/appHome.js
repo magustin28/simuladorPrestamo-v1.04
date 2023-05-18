@@ -41,7 +41,7 @@ function mostrarDolares() {
                                         <td class="pt-2 px-3 text-center">$${dolarBlue.venta}</td>
                                     </tr>
                                     <tr>
-                                    <td colspan="2" class="text-center fst-italic font pt-2">Actualización el ${formatearFecha(dolarBlue.fechaActualizacion)}</td>
+                                    <td colspan="2" class="text-center fst-italic font pt-2">Actualizado el ${formatearFecha(dolarBlue.fechaActualizacion)}</td>
                                     </tr>
                                 </table>
                             </div>

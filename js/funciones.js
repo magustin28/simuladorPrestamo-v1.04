@@ -40,10 +40,10 @@ function formatearFecha(fechaDato) {
     const fecha = new Date(fechaDato);
 
     const dia = fecha.getDate();
-    const mes = fecha.getMonth() + 1;
+    const mes = (fecha.getMonth() + 1).toString().padStart(2, '0');
     const anio = fecha.getFullYear();
     let hora = fecha.getHours();
-    const minutos = fecha.getMinutes();
+    const minutos = fecha.getMinutes().toString().padStart(2, '0');
     let periodo = 'AM';
 
     if (hora >= 12) {
