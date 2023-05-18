@@ -18,28 +18,29 @@
 
 <body>
     <div class="container body-grid">
-        <header class="row justify-content-around">
-            <p class="col-2 mb-0 align-self-center text-center fst-italic">Bienvenidos a</p>
-            <a class="col-6 my-4 text-center text-decoration-none h1 border header-card" href="../index.html">Banco
-                Bank</a>
-        </header>
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link disabled" aria-current="page" href="#">Sobre Nosotros</a>
-                        <a class="nav-link active" href="../index.html">Servicios</a>
-                        <a class="nav-link disabled" href="#">Tarifas</a>
-                        <a class="nav-link disabled">Contacto</a>
+        <!-- header & nav -->
+        <header>
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid d-flex justify-content-evenly">
+                    <a class="col-6 my-4 text-center text-decoration-none h1 border header-card" href="../index.html">Banco
+                        Bank</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <a class="nav-link disabled" aria-current="page" href="#">Sobre Nosotros</a>
+                            <a class="nav-link active" href="../index.html">Servicios</a>
+                            <a class="nav-link disabled" href="#">Tarifas</a>
+                            <a class="nav-link disabled">Contacto</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </header>
+        <!-- main -->
         <main id="mainPrestamo">
             <h2 class="m-4 text-center">Prestamos</h2>
             <p class="m-4">Las opciones de prestamos disponibles por el momento son las siguientes:</p>
@@ -48,14 +49,17 @@
             <p class="m-4">Para inicia el simulador, se debe indicar su fecha de Nacimiento, ya que de la misma depende
                 a que opción de préstamo puede acceder</p>
             <div class="m-4 row d-flex align-items-center justify-content-center">
-                <p class="col-auto col-md-5 col-lg-auto me-md-4 me-lg-5 mb-3 mb-lg-0 text-center">Ingrese su fecha de Nacimiento</p>
-                <input class="col-auto me-md-4 me-lg-5 me-3 mb-3 mb-lg-0" type="date" name="fechaNacimiento" id="fechaN">
+                <p class="col-auto col-md-5 col-lg-auto me-md-4 me-lg-5 mb-3 mb-lg-0 text-center">Ingrese su fecha de
+                    Nacimiento</p>
+                <input class="col-auto me-md-4 me-lg-5 me-3 mb-3 mb-lg-0" type="date" name="fechaNacimiento"
+                    id="fechaN">
                 <button class="col-auto me-md-4 me-lg-5 mb-3 mb-lg-0 btn btn-secondary" type="button"
                     id="consultarEdad">Consultar</button>
                 <a class="col-auto me-md-5 mb-lg-0 text-decoration-none btn btn-outline-info"
                     href="simuladorHistorial.html">Consultar Historial Simulaciones</a>
             </div>
         </main>
+        <!-- footer -->
         <footer>
             <p class="mb-0 footer">Banco Bank © Reservados todos los derechos.</p>
         </footer>

@@ -1,5 +1,9 @@
 // Variables
 
+let arrayProductos = [];
+let tiposProductos = [];
+let dataDolarBlue = [];
+let dolarBlue = [];
 let fechaN;
 let arrayPrestamos = [];
 let tiposPrestamos = [];

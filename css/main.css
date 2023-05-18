@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
 }
 
 /* ESTILOS GENERALES */
@@ -13,26 +13,50 @@ body {
     background-color: #F5F5DC;
 }
 
-.body-grid{
+/* estilos body-grid */
+.body-grid {
     color: #4d4d4d;
     height: 100vh;
-    flex: 1;
+    display: grid;
+    grid-template-rows: 0.3fr 3.3fr 0.5fr;
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
 }
 
-.header-card{
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3) ;
+/* estilos header */
+header {
+    grid-area: header;
 }
 
-.cardProductos{
+.header-card {
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+/* estilos main */
+main {
+    grid-area: main;
+}
+
+.cardProductos {
     height: 7.5rem;
     border-radius: 5px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3) ;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* estilos footer */
-
-.footer{
+.footer {
+    grid-area: footer;
     padding: 1.5rem;
     text-align: center;
     font-style: italic;
+}
+
+/* ESTILOS PARTICULARES */
+/* estilos Home */
+
+.font{
+    font-size: 0.8rem;
 }

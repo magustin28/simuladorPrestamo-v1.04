@@ -1,3 +1,4 @@
+//FUNCIONES HOME-INDEX
 //Mostrar productos
 async function mostrarProductos() {
 
@@ -9,7 +10,9 @@ async function mostrarProductos() {
     await fetch('json/tiposProductos.json')
         .then(async (response) => {
             if (response.ok) {
-                let tiposProductos = await response.json()
+                arrayProductos = await response.json()
+
+                tiposProductos = arrayProductos.map(prop => new Producto(prop.id, prop.nombre, prop.disponible));
 
                 tiposProductos.forEach((producto) => {
 
@@ -32,6 +35,30 @@ async function mostrarProductos() {
         });
 }
 
+//Formato Fecha
+function formatearFecha(fechaDato) {
+    const fecha = new Date(fechaDato);
+
+    const dia = fecha.getDate();
+    const mes = fecha.getMonth() + 1;
+    const anio = fecha.getFullYear();
+    let hora = fecha.getHours();
+    const minutos = fecha.getMinutes();
+    let periodo = 'AM';
+
+    if (hora >= 12) {
+        periodo = 'PM';
+        if (hora > 12) {
+            hora -= 12;
+        }
+    }
+
+    const fechaFormateada = `${dia}/${mes}/${anio} ${hora}:${minutos} ${periodo}`;
+
+    return fechaFormateada;
+}
+
+//FUNCIONES PRESTAMO
 // Mostrar detalle de prestamo
 async function mostrarPrestamos() {
 
@@ -191,6 +218,8 @@ function crearCopiaSimulacion(fechaNacimiento) {
     localStorage.setItem('historialSimulaciones', JSON.stringify(historialSimulacionesGuardadas));
 }
 
+
+//FUNCIONES HISTORIAL PRESTAMO
 //Consultar historial
 function listadoHistorial(filtro) {
     const listadoHistorial = document.querySelector('#listadoHistorial');
@@ -203,7 +232,7 @@ function listadoHistorial(filtro) {
     });
 }
 
-//Buscar dentro de Objetos por Buscado
+//Buscar dentro de Objetos por BuscadoR
 function buscarArraysPorBuscador(array, buscador) {
     selecion = array.find((objeto) => objeto.buscador == buscador);
     return selecion;
