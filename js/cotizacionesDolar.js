@@ -8,6 +8,9 @@ async function mostrarCotizacionDolar() {
     divDolar.classList.add('row','d-flex','justify-content-center');
     dolar.appendChild(divDolar);
 
+    const classDolarAgregar = ['text-center', 'fs-5', 'fst-italic'];
+    const classDolarEliminar = ['row','d-flex','justify-content-center'];
+
     await fetch('https://dolar-api-argentina.vercel.app/v1/dolares')
         .then(async (response) => {
             if (response.ok) {
@@ -45,6 +48,10 @@ async function mostrarCotizacionDolar() {
             }
         })
         .catch((error) => {
-            console.log('Dolar Blue. Error al obtener los datos de la API: ', error);
+            console.log('Error al obtener los datos de la API: ', error);
+
+            classDolarAgregar.forEach(clase => { divDolar.classList.add(clase) });
+            classDolarEliminar.forEach(clase => { divDolar.classList.remove(clase) });
+            divDolar.innerHTML = `Lo sentimos, no pudimos acceder a las cotizaciones. Por favor, recargue la página o consulte mas tarde.`;
         });
 }

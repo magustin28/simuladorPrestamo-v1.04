@@ -60,22 +60,22 @@ consultarEdad.addEventListener('click', async function () {
                 prestamoSelecionado.classList.add('m-3','m-md-4');
 
                 simuladorDatos.innerHTML = `
-                    <div class="m-4 row d-flex align-items-center">
-                        <p class="col-12 col-md-5 col-lg-4 me-3 mb-0 text-center">Nivel de Ingresos</p>
-                        <input class="col-3 me-3" type="number" name="nivelIngresos" id="nivelIngresos">
+                    <div class="m-3 m-md-4 row d-flex align-items-center justify-content-center justify-content-md-start">
+                        <p class="col-11 col-md-4 mb-3 my-md-0 me-md-4 mb-0 text-center">Nivel de Ingresos</p>
+                        <input class="col-9 col-md-3" type="number" name="nivelIngresos" id="nivelIngresos">
                     </div>
-                    <div class="m-4 row d-flex align-items-center">
-                        <p class=col-12 col-md-5 col-lg-4 me-3 mb-0 text-center">Monto del préstamo a solicitar</p>
-                        <input class="col-3 me-3" type="number" name="montoPrestamo" id="montoPrestamo">
-                        <p class="col-12 col-md-5 col-lg-4 mb-0" id="montoMaximo"></p>
+                    <div class="m-3 m-md-4 row d-flex align-items-center justify-content-center justify-content-md-start">
+                        <p class="col-11 col-md-4 mb-3 my-md-0 me-md-4 mb-0 text-center">Monto del préstamo a solicitar</p>
+                        <input class="col-9 col-md-3 mb-3 my-md-0 me-md-4" type="number" name="montoPrestamo" id="montoPrestamo">
+                        <p class="col-9 col-md-4 mb-0 text-center text-md-start" id="montoMaximo">a</p>
                     </div>
-                    <div class="m-4 row d-flex align-items-center">
-                        <p class="col-12 col-md-5 col-lg-4 me-3 mb-0 text-center">Cantidad de cuotas a solicitar</p>
-                        <input class="col-3 me-3" type="number" name="cantidadCuotas" id="cantidadCuotas">
-                        <p class="col-12 col-md-5 col-lg-4 mb-0" id="cuotasMaximas"></p>
+                    <div class="m-3 m-md-4 row d-flex align-items-center justify-content-center justify-content-md-start">
+                        <p class="col-11 col-md-4 mb-3 my-md-0 me-md-4 mb-0 text-center">Cantidad de cuotas a solicitar</p>
+                        <input class="col-9 col-md-3 mb-3 my-md-0 me-md-4" type="number" name="cantidadCuotas" id="cantidadCuotas">
+                        <p class="col-9 col-md-4 mb-0 text-center text-md-start" id="cuotasMaximas">a</p>
                     </div>
-                    <div class="m-4 d-flex justify-content-center">
-                        <button class="col-3 btn btn-success" type="button" id="btnSimular">Calcular</button>
+                    <div class="m-3 m-md-4 d-flex justify-content-center">
+                        <button class="col-md-3 btn btn-success" type="button" id="btnSimular">Calcular</button>
                     </div>
                 `;
 
@@ -133,9 +133,9 @@ consultarEdad.addEventListener('click', async function () {
                         let nacimientoFecha = `${componentesFecha[2]}/${componentesFecha[1]}/${componentesFecha[0]}`;
 
                         resultadoSimulador.innerHTML = `
-                            <p class="mx-4">Le detallamos la simulación de su préstamo:</p>
-                            <div class="row d-flex justify-content-evenly p-3 border border-secondary header-card">
-                                <div class="col-5">
+                            <p class="mx-4 my-3">Le detallamos la simulación de su préstamo:</p>
+                            <div class="row d-flex justify-content-center justify-content-md-evenly p-3 border border-secondary header-card">
+                                <div class="col- col-md-5 mb-3 mb-md-0">
                                     <p class="mb-2">* Fecha de Nacimiento: ${nacimientoFecha}</p>
                                     <p class="mb-2">* Edad: ${edad(fechaN)} años</p>
                                     <p class="mb-2">* Línea: ${buscarArraysPorNombre(tiposPrestamos, (document.querySelector('#listadoPrestamos').value)).nombre}</p>
@@ -144,30 +144,30 @@ consultarEdad.addEventListener('click', async function () {
                                     <p class="mb-2">* Tasa: ${buscarArraysPorNombre(tiposPrestamos, (document.querySelector('#listadoPrestamos').value)).tasa * 100}% TNA</p>
                                     <p class="mb-2">* Tiene que ingresar ${cantidadCuotas.value} cuotas de ${formatoPesos(buscarArraysPorNombre(tiposPrestamos, (document.querySelector('#listadoPrestamos').value)).valorCuota(parseInt(montoPrestamo.value), parseInt(cantidadCuotas.value)))}</p>
                                 </div>
-                                <table class="col-4">
+                                <table class="col-10 col-md-5">
                                     <tr>
-                                        <td class="col-2">Capital:</td>
-                                        <td class="col-3 text-end">${formatoPesos(parseInt(montoPrestamo.value))}</td>
+                                        <td class="col-5 text-start">Capital:</td>
+                                        <td class="col-3 text-center">${formatoPesos(parseInt(montoPrestamo.value))}</td>
                                     </tr>
                                     <tr>
-                                        <td class="col-2">Interes:</td>
-                                        <td class="col-3 text-end">${formatoPesos(buscarArraysPorNombre(tiposPrestamos, (document.querySelector('#listadoPrestamos').value)).calculoInteres(parseInt(montoPrestamo.value), parseInt(cantidadCuotas.value)))}</td>
+                                        <td class="col-5 text-start">Interes:</td>
+                                        <td class="col-3 text-center">${formatoPesos(buscarArraysPorNombre(tiposPrestamos, (document.querySelector('#listadoPrestamos').value)).calculoInteres(parseInt(montoPrestamo.value), parseInt(cantidadCuotas.value)))}</td>
                                     </tr>
                                     <tr>
-                                        <td class="col-2">Seguro:</td>
-                                        <td class="col-3 text-end">${formatoPesos(buscarArraysPorNombre(tiposPrestamos, (document.querySelector('#listadoPrestamos').value)).calculoSeguro(montoPrestamo.value))}</td>
+                                        <td class="col-5 text-start">Seguro:</td>
+                                        <td class="col-3 text-center">${formatoPesos(buscarArraysPorNombre(tiposPrestamos, (document.querySelector('#listadoPrestamos').value)).calculoSeguro(montoPrestamo.value))}</td>
                                     </tr>
                                     <tr>
-                                        <td class="col-2">IVA (sobre Int. y Seg.):</td>
-                                        <td class="col-3 text-end">${formatoPesos(buscarArraysPorNombre(tiposPrestamos, (document.querySelector('#listadoPrestamos').value)).calculoIva(parseInt(montoPrestamo.value), parseInt(cantidadCuotas.value)))}</td>
+                                        <td class="col-5 text-start">IVA (sobre Int. y Seg.):</td>
+                                        <td class="col-3 text-center">${formatoPesos(buscarArraysPorNombre(tiposPrestamos, (document.querySelector('#listadoPrestamos').value)).calculoIva(parseInt(montoPrestamo.value), parseInt(cantidadCuotas.value)))}</td>
                                     </tr>
                                     <tr>
-                                        <td class="col-2">Importe total:</td>
-                                        <td class="col-3 text-end">${formatoPesos(buscarArraysPorNombre(tiposPrestamos, (document.querySelector('#listadoPrestamos').value)).totalAPagar(parseInt(montoPrestamo.value), parseInt(cantidadCuotas.value)))}</td>
+                                        <td class="col-2 text-start">Importe total:</td>
+                                        <td class="col-3 text-center">${formatoPesos(buscarArraysPorNombre(tiposPrestamos, (document.querySelector('#listadoPrestamos').value)).totalAPagar(parseInt(montoPrestamo.value), parseInt(cantidadCuotas.value)))}</td>
                                     </tr>
                                     <tr>
-                                        <td class="col-2">CFT:</td>
-                                        <td class="col-3 text-end">${buscarArraysPorNombre(tiposPrestamos, (document.querySelector('#listadoPrestamos').value)).cft(parseInt(montoPrestamo.value), parseInt(cantidadCuotas.value))}%</td>
+                                        <td class="col-2 text-start">CFT:</td>
+                                        <td class="col-3 text-center">${buscarArraysPorNombre(tiposPrestamos, (document.querySelector('#listadoPrestamos').value)).cft(parseInt(montoPrestamo.value), parseInt(cantidadCuotas.value))}%</td>
                                     </tr>
                               </table>
                             </div>

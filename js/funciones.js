@@ -1,4 +1,4 @@
-//FUNCIONES HOME-INDEX
+//FUNCIONES PÁGINA HOME-INDEX
 //Mostrar productos
 async function mostrarProductos() {
 
@@ -58,7 +58,7 @@ function formatearFecha(fechaDato) {
     return fechaFormateada;
 }
 
-//FUNCIONES PRESTAMO
+//FUNCIONES PÁGINA PRESTAMO
 // Mostrar detalle de prestamo
 async function mostrarPrestamos() {
 
@@ -90,10 +90,10 @@ async function mostrarPrestamos() {
                             <div id="${id}" class="accordion-collapse collapse">
                                 <div class="accordion-body">
                                     <p>Edad mínima: ${prestamo.edadMinima} años</p>
-                                    <p>Edad límite: ${prestamo.edadMaxima} años</p>
+                                    ${prestamo.edadMaxima != 100 ? `<p>Edad límite: ${prestamo.edadMaxima} años</p>` : ''}
                                     <p>Monto máximo a solicitar: ${formatoPesos(prestamo.montoMaxino)}</p>
                                     <p>Requiere de garantía: ${prestamo.garantia}</p>
-                                    <p>Tipo de garantía: ${prestamo.tipoGarantia}</p>
+                                    ${prestamo.tipoGarantia != 'N/A' ? `<p>Tipo de garantía: ${prestamo.tipoGarantia}</p>` : ''}
                                     <p>Tasa: ${prestamo.tasa * 100}% TNA</p>
                                     <p>Seguro: ${prestamo.seguro * 100}% sobre el capital solicitado</p>
                                     <p>Mínimo de cuotas a solicitar: ${prestamo.cuotasMinimo} cuotas</p>
@@ -112,7 +112,7 @@ async function mostrarPrestamos() {
         .catch((error) => {
             classProductosAgregar.forEach(clase => { divPrestamo.classList.add(clase) });
             classProductosEliminar.forEach(clase => { divPrestamo.classList.remove(clase) });
-            divPrestamo.innerHTML = `Lo sentimos, no pudimos acceder a los productos disponible. Por favor, recargue la página o consulte mas tarde.`;
+            divPrestamo.innerHTML = `Lo sentimos, no pudimos acceder a los préstamos disponible. Por favor, recargue la página o consulte mas tarde.`;
         });
 }
 
@@ -218,8 +218,7 @@ function crearCopiaSimulacion(fechaNacimiento) {
     localStorage.setItem('historialSimulaciones', JSON.stringify(historialSimulacionesGuardadas));
 }
 
-
-//FUNCIONES HISTORIAL PRESTAMO
+//FUNCIONES PÁGINA HISTORIAL PRESTAMO
 //Consultar historial
 function listadoHistorial(filtro) {
     const listadoHistorial = document.querySelector('#listadoHistorial');
