@@ -20,10 +20,10 @@ consultarEdad.addEventListener('click', async function () {
     simulador.innerHTML = `
         <p class="" id="mensajePrestamoEdad"></p>
         <ul class="" id="mensajePrestamoEdadUl"></ul>
-        <div class="mx-4 my-3 row d-flex align-items-center">
-            <p class="col-3 me-3 mb-0 text-center">Seleccione una de las opciones</p>
-            <select class="col-3 me-3" id="listadoPrestamos"></select>
-            <button class="col-2 me-3 btn btn-secondary" type="button" id="seleccionarPrestamo">Elegir</button>
+        <div class="mx-4 my-3 row d-flex align-items-center justify-content-evenly">
+            <p class="col-12 col-md-5 col-lg-4 me-md-3 my-2 text-center">Seleccione una de las opciones</p>
+            <select class="col-9 col-sm-4 col-md-3 my-2" id="listadoPrestamos"></select>
+            <button class="col-4 col-md-2 my-2 btn btn-secondary" type="button" id="seleccionarPrestamo">Elegir</button>
         </div>
     `;
 
@@ -57,22 +57,22 @@ consultarEdad.addEventListener('click', async function () {
                 prestamoSelecionado.innerHTML = `Usted a seleccionado ${document.querySelector('#listadoPrestamos').value}<br>Para simular su préstamo vamos a necesitar que nos indique los siguientes datos:`;
 
                 prestamoSelecionadoClass.forEach(clase => { prestamoSelecionado.classList.remove(clase) })
-                prestamoSelecionado.classList.add('m-4');
+                prestamoSelecionado.classList.add('m-3','m-md-4');
 
                 simuladorDatos.innerHTML = `
                     <div class="m-4 row d-flex align-items-center">
-                        <p class="col-3 me-3 mb-0 text-center">Nivel de Ingresos</p>
+                        <p class="col-12 col-md-5 col-lg-4 me-3 mb-0 text-center">Nivel de Ingresos</p>
                         <input class="col-3 me-3" type="number" name="nivelIngresos" id="nivelIngresos">
                     </div>
                     <div class="m-4 row d-flex align-items-center">
-                        <p class="col-3 me-3 mb-0 text-center">Monto del préstamo a solicitar</p>
+                        <p class=col-12 col-md-5 col-lg-4 me-3 mb-0 text-center">Monto del préstamo a solicitar</p>
                         <input class="col-3 me-3" type="number" name="montoPrestamo" id="montoPrestamo">
-                        <p class="col-4 mb-0" id="montoMaximo"></p>
+                        <p class="col-12 col-md-5 col-lg-4 mb-0" id="montoMaximo"></p>
                     </div>
                     <div class="m-4 row d-flex align-items-center">
-                        <p class="col-3 me-3 mb-0 text-center">Cantidad de cuotas a solicitar</p>
+                        <p class="col-12 col-md-5 col-lg-4 me-3 mb-0 text-center">Cantidad de cuotas a solicitar</p>
                         <input class="col-3 me-3" type="number" name="cantidadCuotas" id="cantidadCuotas">
-                        <p class="col-4 mb-0" id="cuotasMaximas"></p>
+                        <p class="col-12 col-md-5 col-lg-4 mb-0" id="cuotasMaximas"></p>
                     </div>
                     <div class="m-4 d-flex justify-content-center">
                         <button class="col-3 btn btn-success" type="button" id="btnSimular">Calcular</button>

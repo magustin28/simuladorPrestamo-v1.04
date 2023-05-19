@@ -18,7 +18,7 @@ async function mostrarProductos() {
 
                     productos.innerHTML += `
             
-                    <div class="col-lg-2 mx-2 d-flex flex-column justify-content-evenly align-items-center cardProductos">
+                    <div class="col-9 col-md-4 col-lg-3 mx-1 my-2 mb-lg-0 d-flex flex-column justify-content-evenly align-items-center cardProductos">
                         <p class="mb-0">${producto.nombre}</p>
                         <p class="mb-0">${producto.disponible}</p>
                     </div>
@@ -80,7 +80,7 @@ async function mostrarPrestamos() {
                     const id = `collapse${index}`;
                     divPrestamo.innerHTML += `
             
-                    <div class="col mt-4 mx-2 accordion" id="accordionExample">
+                    <div class="col-12 col-md-4 col-lg my-2 my-md-0 mx-lg-3 accordion" id="accordionExample">
                         <div class="accordion-item">
                             <p class="accordion-header">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#${id}" aria-expanded="true" aria-controls="${id}">

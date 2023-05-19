@@ -41,6 +41,7 @@ main {
 }
 
 .cardProductos {
+    width: 18rem;
     height: 7.5rem;
     border-radius: 5px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -57,6 +58,11 @@ main {
 /* ESTILOS PARTICULARES */
 /* estilos Home */
 
-.font{
+.font {
     font-size: 0.8rem;
+}
+
+.cardDolar {
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }

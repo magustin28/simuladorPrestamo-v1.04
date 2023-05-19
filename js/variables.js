@@ -2,8 +2,7 @@
 
 let arrayProductos = [];
 let tiposProductos = [];
-let dataDolarBlue = [];
-let dolarBlue = [];
+let cotizacionDolares = [];
 let fechaN;
 let arrayPrestamos = [];
 let tiposPrestamos = [];
