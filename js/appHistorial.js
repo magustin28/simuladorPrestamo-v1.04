@@ -5,8 +5,8 @@ const verSimulacion = document.querySelector('#verSimulacion');
 
 if (historialSimulacionesGuardadas.length == 0) {
     verHistorial.innerHTML = `
-        <p class="col-9 mb-0 me-2 text-center fs-5">No tiene historial para revisar</p>
-        <a class="col-2 btn btn-outline-info" href="prestamo.html">Regresar a Préstamos</a>
+        <p class="col- col-md-8 col-lg-9 mb-4 mb-md-0 me-2 text-center fs-5">No tiene historial para revisar</p>
+        <a class="col-6 col-md-3 col-lg-2 btn btn-outline-info" href="prestamo.html">Regresar a Préstamos</a>
         `;
 } else {
     verHistorial.innerHTML = `
@@ -88,8 +88,17 @@ if (historialSimulacionesGuardadas.length == 0) {
                 historialSimulacionesGuardadas.splice(indiceABorrar, 1);
                 localStorage.setItem('historialSimulaciones', JSON.stringify(historialSimulacionesGuardadas));
                 Swal.fire('Se ha borrado su simulación', '', 'success').then(() => {
+
+                    if (historialSimulacionesGuardadas.length == 0) {
+                        verSimulacion.innerHTML = ``;
+                        verHistorial.innerHTML = `
+                            <p class="col- col-md-8 col-lg-9 mb-4 mb-md-0 me-2 text-center fs-5">No tiene historial para revisar</p>
+                            <a class="col-6 col-md-3 col-lg-2 btn btn-outline-info" href="prestamo.html">Regresar a Préstamos</a>
+                            `;
+                    } else {
                     verSimulacion.innerHTML = ``;
                     listadoHistorial(historialSimulacionesGuardadas);
+                    }
                 })
             } else if (result.isDenied) {
                 Swal.fire('No se ha borrado su simulación', `Fecha: ${buscarArraysPorBuscador(historialSimulacionesGuardadas, (document.querySelector('#listadoHistorial').value)).fechaSimulacion} - Prestamo: ${buscarArraysPorBuscador(historialSimulacionesGuardadas, (document.querySelector('#listadoHistorial').value)).montoPrestamo}`, 'info').then(() => {
@@ -120,6 +129,7 @@ if (historialSimulacionesGuardadas.length == 0) {
                 localStorage.clear();
 
                 Swal.fire('Se elimino su historial de simulaciones', 'Gracias por visitarnos. Esperamos que vuelta pronto!', 'success').then(() => {
+                    verSimulacion.innerHTML = ``;
                     verHistorial.innerHTML = `
                     <p class="col-9 mb-0 me-2 text-center fs-5">No tiene historial para revisar</p>
                     <a class="col-2 btn btn-outline-info" href="prestamo.html">Regresar a Préstamos</a>
